@@ -66,5 +66,38 @@
     <h2><?php echo $book22->title; ?></h2>
     <p>Book author: <?php echo $book22->author; ?></p>
     <p>Pages: <?php echo $book22->pages; ?></p>
+    <br>
+    <br>
+    <hr>
+
+    <h1>Learning Object Functions</h1>
+
+    <?php
+      class Student{
+        var $name;
+        var $major;
+        var $gpa;
+
+        function __construct($name, $major, $gpa) {
+          $this->name = $name;
+          $this->major - $major;
+          $this->gpa = $gpa;
+        }
+
+        function hasHonors() {
+          if ($this->gpa > 3.5) {
+            return "has honors";
+          }
+          else {
+            return "doesnt have honors";
+          }
+        }
+      }
+
+      $student1 = new Student("Ranjan", "Business", 4.2);
+      $student2 = new Student("Tom", "Art", 3.2);
+     ?>
+     <p>Student <?php echo $student1->name . " " .$student1->hasHonors() . ".";?></p>
+     <p>Student <?php echo $student2->name . " " .$student2->hasHonors() . ".";?></p>
   </body>
 </html>
