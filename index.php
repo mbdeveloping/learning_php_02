@@ -3,14 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Learning php classes & object</title>
+    <style media="screen">
+    body {
+      text-align: center;
+    }
+      h1 {
+        background: lightgrey;
+      }
+    </style>
   </head>
   <body>
     <h1>Learning php classes & object</h1>
     <?php
     class Book {
-      var $title;
-      var $author;
-      var $pages;
+      public $title;
+      public $author;
+      public $pages;
 
     }
 
@@ -42,9 +50,9 @@
 
     <?php
     class Book2{
-      var $title;
-      var $author;
-      var $pages;
+      public $title;
+      public $author;
+      public $pages;
 
       function __construct($title, $author, $pages) {
         $this->title = $title;
@@ -66,6 +74,7 @@
     <h2><?php echo $book22->title; ?></h2>
     <p>Book author: <?php echo $book22->author; ?></p>
     <p>Pages: <?php echo $book22->pages; ?></p>
+
     <br>
     <br>
     <hr>
@@ -74,9 +83,9 @@
 
     <?php
       class Student{
-        var $name;
-        var $major;
-        var $gpa;
+        public $name;
+        public $major;
+        public $gpa;
 
         function __construct($name, $major, $gpa) {
           $this->name = $name;
@@ -99,5 +108,52 @@
      ?>
      <p>Student <?php echo $student1->name . " " .$student1->hasHonors() . ".";?></p>
      <p>Student <?php echo $student2->name . " " .$student2->hasHonors() . ".";?></p>
+
+     <br>
+     <br>
+     <hr>
+
+     <h1>Learning Getters & Setters</h1>
+     <?php
+       class Movie {
+         public $title;
+         private $rating;
+
+         function __construct($title, $rating) {
+           $this->title = $title;
+           $this->setRating($rating);
+         }
+
+         function getRating() {
+           return $this->rating;
+         }
+
+         function setRating($rating) {
+           if ($rating === "G" ||  $rating === "PG" || $rating === "PG-13" || $rating === "R" || $rating === "NR") {
+             $this->rating = $rating;
+           }else {
+             $this->rating = "NR (Not Rated)";
+           }
+         }
+       }
+
+       function checkVal() {
+         if (isset($_GET['submit'])) {
+           return $_GET['rate'];
+         }else {
+           return "Dog";
+         }
+       }
+       $avengers = new Movie("Avengers", checkVal());
+      ?>
+      <h2>Rate <u>Avengers</u> movie</h2>
+      <p>Ratings:  G, PG, PG-13, R, NR</p>
+
+      <form  action="index.php" method="get">
+        Rate: <input type="text" name="rate">
+        <input type="submit" name="submit" value="Submit">
+      </form>
+      <p><?php echo "Your rating is: ".$avengers->getRating();?></p>
+
   </body>
 </html>
